@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Pedidos e Estoque</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282a36;
+            color: #f8f8f2;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #bd93f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #44475a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #6272a4;
+            color: #f8f8f2;
+        }
+        table, th, td {
+            border: 1px solid #44475a;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #44475a;
+            color: #50fa7b;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-group label {
+            margin-right: 10px;
+            color: #ff79c6;
+        }
+        .input-group input {
+            padding: 5px;
+            width: 150px;
+            background-color: #6272a4;
+            color: #f8f8f2;
+            border: 1px solid #44475a;
+            border-radius: 4px;
+        }
+        .input-group button {
+            padding: 5px 10px;
+            background-color: #50fa7b;
+            color: #282a36;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background-color: #8be9fd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciamento de Pedidos e Estoque</h1>
+
+        <div class="input-group">
+            <label for="product">Produto:</label>
+            <input type="text" id="product" placeholder="Nome do produto">
+        </div>
+
+        <div class="input-group">
+            <label for="quantity">Quantidade:</label>
+            <input type="number" id="quantity" placeholder="Quantidade">
+        </div>
+
+        <div class="input-group">
+            <button onclick="addOrder()">Adicionar Pedido</button>
+        </div>
+
+        <h2>Estoque</h2>
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas serão adicionadas dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const stock = {};
+
+        function addOrder() {
+            const product = document.getElementById('product').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            if (product && quantity) {
+                if (stock[product]) {
+                    stock[product] += quantity;
+                } else {
+                    stock[product] = quantity;
+                }
+
+                updateStockTable();
+            }
+        }
+
+        function updateStockTable() {
+            const stockTableBody = document.getElementById('stockTable').getElementsByTagName('tbody')[0];
+            stockTableBody.innerHTML = ''; // Limpa a tabela antes de atualizá-la
+
+            for (const product in stock) {
+                const row = stockTableBody.insertRow();
+
+                const cellProduct = row.insertCell(0);
+                const cellQuantity = row.insertCell(1);
+
+                cellProduct.textContent = product;
+                cellQuantity.textContent = stock[product];
+            }
+        }
+    </script>
+</body>
+</html>

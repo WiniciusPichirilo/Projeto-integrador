@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte ao Cliente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .ticket-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .ticket-form input, .ticket-form textarea, .ticket-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .ticket-form button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .ticket-list {
+            margin-top: 40px;
+        }
+
+        .ticket-item {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .ticket-item h3 {
+            margin-top: 0;
+        }
+
+        .ticket-item p {
+            margin: 5px 0;
+        }
+
+        .ticket-item button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ticket-item button.close {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Suporte ao Cliente</h1>
+
+        <div class="ticket-form">
+            <h2>Abrir um Novo Ticket</h2>
+            <input type="text" id="customerName" placeholder="Seu Nome" required>
+            <input type="email" id="customerEmail" placeholder="Seu Email" required>
+            <textarea id="ticketDescription" placeholder="Descreva seu problema" rows="4" required></textarea>
+            <button onclick="submitTicket()">Enviar Ticket</button>
+        </div>
+
+        <div class="ticket-list">
+            <h2>Tickets Abertos</h2>
+            <div id="ticketsContainer">
+                <!-- Lista de tickets abertos -->
+            </div>
+        </div>
+    </div>
+
+    <script src="suporte.js"></script>
+</body>
+</html>
